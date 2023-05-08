@@ -6,23 +6,24 @@
 //
 
 
-//１、入力されたプレイヤー名の受け取り
-//２、ランダムボタンを押すと、プレイヤーラベルがプレイヤー数だけ上から順にランダムに表示（プレイヤーのラベルとプレイヤーのラベルのテキストの配列をそれぞれ生成し、それぞれランダムに取り出してラベルのテキストをランダムテキストにする）
 
 
 import UIKit
 
+
+//ゲームを進めるプレイヤーの順番を決定する
+
 class OrderViewController: UIViewController {
     
     
-    @IBOutlet weak var order1PlayerLabel: UILabel!
-    @IBOutlet weak var order2PlayerLabel: UILabel!
-    @IBOutlet weak var order3PlayerLabel: UILabel!
-    @IBOutlet weak var order4PlayerLabel: UILabel!
-    @IBOutlet weak var order5PlayerLabel: UILabel!
-    @IBOutlet weak var order6PlayerLabel: UILabel!
-    @IBOutlet weak var order7PlayerLabel: UILabel!
-    @IBOutlet weak var order8PlayerLabel: UILabel!
+    @IBOutlet weak var player1NameLabel: UILabel!
+    @IBOutlet weak var player2NameLabel: UILabel!
+    @IBOutlet weak var player3NameLabel: UILabel!
+    @IBOutlet weak var player4NameLabel: UILabel!
+    @IBOutlet weak var player5NameLabel: UILabel!
+    @IBOutlet weak var player6NameLabel: UILabel!
+    @IBOutlet weak var player7NameLabel: UILabel!
+    @IBOutlet weak var player8NameLabel: UILabel!
     
     @IBOutlet weak var fourLabel: UILabel!
     @IBOutlet weak var fiveLabel: UILabel!
@@ -30,59 +31,43 @@ class OrderViewController: UIViewController {
     @IBOutlet weak var sevenLabel: UILabel!
     @IBOutlet weak var eightLabel: UILabel!
     
-    
-    
-    var playerNameArray = [String]() //遷移先に渡す用の配列
-    var  count = 0
 
+    var playerNameLabelArray = [UILabel]()
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         
-        order1PlayerLabel.isUserInteractionEnabled = true
-        order2PlayerLabel.isUserInteractionEnabled = true
-        order3PlayerLabel.isUserInteractionEnabled = true
-        order4PlayerLabel.isUserInteractionEnabled = true
-        order5PlayerLabel.isUserInteractionEnabled = true
-        order6PlayerLabel.isUserInteractionEnabled = true
-        order7PlayerLabel.isUserInteractionEnabled = true
-        order8PlayerLabel.isUserInteractionEnabled = true
-        
-        order1PlayerLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(singleTapping)))
-        order2PlayerLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(singleTapping)))
-        order3PlayerLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(singleTapping)))
-        order4PlayerLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(singleTapping)))
-        order5PlayerLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(singleTapping)))
-        order6PlayerLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(singleTapping)))
-        order7PlayerLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(singleTapping)))
-        order8PlayerLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(singleTapping)))
-        
-        let playerLabelArray = [order1PlayerLabel,order2PlayerLabel,order3PlayerLabel,order4PlayerLabel,order5PlayerLabel,order6PlayerLabel,order7PlayerLabel,order8PlayerLabel]
-        
-        for i in 0 ..< Global.shared.globalPlayerArray.count {
-            playerLabelArray[i]?.text = Global.shared.globalPlayerArray[i]
-        }
+        GlobalThingsInGame.shared.appendRoundCount += 1
+
+         playerNameLabelArray +=  [player1NameLabel,player2NameLabel,player3NameLabel,player4NameLabel,player5NameLabel,player6NameLabel,player7NameLabel,player8NameLabel]
+                
 
         
-        order4PlayerLabel.isHidden = Global.shared.globalPlayerArray.count < 4
-        order5PlayerLabel.isHidden = Global.shared.globalPlayerArray.count < 5
-        order6PlayerLabel.isHidden = Global.shared.globalPlayerArray.count < 6
-        order7PlayerLabel.isHidden = Global.shared.globalPlayerArray.count < 7
-        order8PlayerLabel.isHidden = Global.shared.globalPlayerArray.count < 8
-        
-        fourLabel.isHidden = Global.shared.globalPlayerArray.count < 4
-        fiveLabel.isHidden = Global.shared.globalPlayerArray.count < 5
-        sixLabel.isHidden = Global.shared.globalPlayerArray.count < 6
-        sevenLabel.isHidden = Global.shared.globalPlayerArray.count < 7
-        eightLabel.isHidden = Global.shared.globalPlayerArray.count < 8
-        
-        
-        for i in Global.shared.globalPlayerArray {
-            if i == "" {
-                Global.shared.globalPlayerArray.removeAll(where: {$0 == i})
-            }
+        for i in 0 ..< GlobalThingsInGame.shared.playerNameArray.count {
+            playerNameLabelArray[i].text = GlobalThingsInGame.shared.playerNameArray[i]
+            playerNameLabelArray[i].isUserInteractionEnabled = true
+            playerNameLabelArray[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(swapTextSingleTapping)))
         }
+        
+        
+         
+        player4NameLabel.isHidden = GlobalThingsInGame.shared.playerNameArray.count < 4
+        player5NameLabel.isHidden = GlobalThingsInGame.shared.playerNameArray.count < 5
+        player6NameLabel.isHidden = GlobalThingsInGame.shared.playerNameArray.count < 6
+        player7NameLabel.isHidden = GlobalThingsInGame.shared.playerNameArray.count < 7
+        player8NameLabel.isHidden = GlobalThingsInGame.shared.playerNameArray.count < 8
+        
+        
+        fourLabel.isHidden = GlobalThingsInGame.shared.playerNameArray.count < 4
+        fiveLabel.isHidden = GlobalThingsInGame.shared.playerNameArray.count < 5
+        sixLabel.isHidden = GlobalThingsInGame.shared.playerNameArray.count < 6
+        sevenLabel.isHidden = GlobalThingsInGame.shared.playerNameArray.count < 7
+        eightLabel.isHidden = GlobalThingsInGame.shared.playerNameArray.count < 8
+        
+        
+
         
     }
 
@@ -90,73 +75,78 @@ class OrderViewController: UIViewController {
     
     @IBAction func randomOrderButton(_ sender: Any) {
         
-        let playerLabelArray = [order1PlayerLabel,order2PlayerLabel,order3PlayerLabel,order4PlayerLabel,order5PlayerLabel,order6PlayerLabel,order7PlayerLabel,order8PlayerLabel]
-    
+        GlobalThingsInGame.shared.playerNameArray.shuffle()
         
-        Global.shared.globalPlayerArray.shuffle()
-        
-        for i in 0 ..<  Global.shared.globalPlayerArray.count {
-            playerLabelArray[i]!.text = Global.shared.globalPlayerArray[i]
+        for i in 0 ..<  GlobalThingsInGame.shared.playerNameArray.count {
+            
+            playerNameLabelArray[i].text = GlobalThingsInGame.shared.playerNameArray[i]
+            
         }
 
     }
     
     
     
-    @IBAction func playStartButton(_ sender: Any) {
-    performSegue(withIdentifier: "themeAnnouncement", sender: nil)
-    }
-    
-    
+    @IBAction func goToThemeAnnouncementPageButton(_ sender: Any) {
+        
+        //後で使う２次元配列の１次元配列をプレイヤー分用意する
+        for _ in 0 ..< GlobalThingsInGame.shared.playerNameArray.count {
+            
+            GlobalThingsInGame.shared.playerAnswerAlphabetArray2D.append([String]())
+            
+        }
+        
+        
+        //プレイヤーの名前と初期点数「０」をセットする
+        for i in GlobalThingsInGame.shared.playerNameArray {
+            
+            let player = PlayerNameAndPoint(name: "\(i)", point: 0)
+            
+            GlobalThingsInGame.shared.playerPointNameAndArray2D.append([player])
+        }
+        
+        performSegue(withIdentifier: "themeAnnouncement", sender: nil)
+        
 
-    
-    @objc func tapped(label:UILabel) {
-        
-        var playerLabelArray = [order1PlayerLabel,order2PlayerLabel,order3PlayerLabel,order4PlayerLabel,order5PlayerLabel,order6PlayerLabel,order7PlayerLabel,order8PlayerLabel]
-        
-            if label.backgroundColor == UIColor.gray {
-                label.backgroundColor = UIColor.white
-            } else {
-                label.backgroundColor = UIColor.gray
-                playerLabelArray.removeAll(where: { $0 == label} )
-        
-        
-                for i in playerLabelArray {
-        
-                    if i!.backgroundColor == UIColor.gray {
-                        swap(&label.text, &i!.text)
-                        label.backgroundColor = UIColor.white
-                        i?.backgroundColor = UIColor.white
-                    }
-                }
-        
-            }
         
     }
     
     
+    
 
 
-    @objc func singleTapping(_ sender: UITapGestureRecognizer) {
+    //タップしたセルの色によって動作が変わる
+    @objc func swapTextSingleTapping(_ sender: UITapGestureRecognizer) {
+        
         
         if let label = sender.view as? UILabel {
             
-            var playerLabelArray = [order1PlayerLabel,order2PlayerLabel,order3PlayerLabel,order4PlayerLabel,order5PlayerLabel,order6PlayerLabel,order7PlayerLabel,order8PlayerLabel]
+            var playerLabelArray = [player1NameLabel,player2NameLabel,player3NameLabel,player4NameLabel,player5NameLabel,player6NameLabel,player7NameLabel,player8NameLabel]
         
             
             if label.backgroundColor == UIColor.gray {
+                
                 label.backgroundColor = UIColor.white
+                
             } else {
+                
+                
                 label.backgroundColor = UIColor.gray
+                
                 playerLabelArray.removeAll(where: { $0 == label} )
         
         
+                //他にタップしているセル（＝グレーのセル）があればtext交換＆全てのセルカラーを白に。なければタップしたセルを白にする。
                 for i in playerLabelArray {
         
                     if i!.backgroundColor == UIColor.gray {
+                        
                         swap(&label.text, &i!.text)
+                        
                         label.backgroundColor = UIColor.white
+                        
                         i?.backgroundColor = UIColor.white
+                        
                     }
                 }
         
@@ -168,4 +158,6 @@ class OrderViewController: UIViewController {
 
 
 }
+
+
 

@@ -8,6 +8,7 @@
 import UIKit
 import OrderedCollections
 
+//１ラウンド毎のテーマを決定し、各メンバーに公開
 class SceneCheckViewController: UIViewController {
     
     @IBOutlet weak var playerSceneLabel: UILabel!
@@ -15,12 +16,9 @@ class SceneCheckViewController: UIViewController {
     @IBOutlet weak var desuLabel: UILabel!
     @IBOutlet weak var turnPlayerSceneCheckButton: UIButton!
     @IBOutlet weak var turnPlayerSceneCheckButtonIB: UIButton!
+
     
     
-    var count = 0
-    var count2 = 0
-    //シーンだけを入れる用配列
-    var randomcopy = [String]()
     
     
     override func viewDidLoad() {
@@ -28,44 +26,35 @@ class SceneCheckViewController: UIViewController {
         
         self.navigationItem.hidesBackButton = true
         sceneLabel.adjustsFontSizeToFitWidth = true
- 
-        
-        
-        for i in Global.shared.globalPlayerArray {
-            
-            let player = PlayerNameAndPoint(name: "\(i)", point: 0)
-            
-            Global.shared.playerPointNameArray.append([player])
-        }
-        
-        
-
-        
-        randomcopy += [Global.shared.randomTheme.a,Global.shared.randomTheme.b,Global.shared.randomTheme.c,Global.shared.randomTheme.d,Global.shared.randomTheme.e,Global.shared.randomTheme.f,Global.shared.randomTheme.g,Global.shared.randomTheme.h]
-        
-        
-        
-        
-        //１戦毎の各プレイヤーのシーンを、プレイヤーの演技順に格納
-        for _ in 0 ..< Global.shared.globalPlayerArray.count {
-            //ランダムに選ぶ
-            let random = randomcopy.randomElement()
-            //選んだものをコピー配列から削除
-            randomcopy.removeAll(where: {$0 == random})
-            //格納
-            Global.shared.orderActingSceneArray.append(random!)
-        }
-        
-        
-        labelChange()
         
         playerSceneLabel.isHidden = true
         sceneLabel.isHidden = true
         desuLabel.isHidden = true
+ 
+
+        
+        
+        GlobalThingsInGame.shared.oneSetOrderActSceneArray.append(GlobalThingsInGame.shared.oneSetRandomTheme.a)
+        GlobalThingsInGame.shared.oneSetOrderActSceneArray.append(GlobalThingsInGame.shared.oneSetRandomTheme.b)
+        GlobalThingsInGame.shared.oneSetOrderActSceneArray.append(GlobalThingsInGame.shared.oneSetRandomTheme.c)
+        GlobalThingsInGame.shared.oneSetOrderActSceneArray.append(GlobalThingsInGame.shared.oneSetRandomTheme.d)
+        GlobalThingsInGame.shared.oneSetOrderActSceneArray.append(GlobalThingsInGame.shared.oneSetRandomTheme.e)
+        GlobalThingsInGame.shared.oneSetOrderActSceneArray.append(GlobalThingsInGame.shared.oneSetRandomTheme.f)
+        GlobalThingsInGame.shared.oneSetOrderActSceneArray.append(GlobalThingsInGame.shared.oneSetRandomTheme.g)
+        GlobalThingsInGame.shared.oneSetOrderActSceneArray.append(GlobalThingsInGame.shared.oneSetRandomTheme.h)
+        
+        GlobalThingsInGame.shared.oneSetOrderActSceneArray.shuffle()
+        
+        
+
+        
+        labelChange()
         
     }
     
 
+    
+    
     
     
     //シーン確認ボタン
@@ -80,13 +69,24 @@ class SceneCheckViewController: UIViewController {
     }
     
 
-    //シーン確認後ボタン
+    
+    
+    
+    
+    var count = 0
+    
+    //シーン確認後、次のプレイヤーに交代するボタン
     @IBAction func nextPlayerSceneCheckButton(_ sender: Any) {
         
         turnPlayerSceneCheckButtonIB.isHidden = false
+        playerSceneLabel.isHidden = true
+        sceneLabel.isHidden = true
+        desuLabel.isHidden = true
+        
         
         count += 1
-        if count < Global.shared.globalPlayerArray.count {
+        
+        if count < GlobalThingsInGame.shared.playerNameArray.count {
             
         labelChange()
         
@@ -94,22 +94,22 @@ class SceneCheckViewController: UIViewController {
         
         
         //最後のプレイヤーまで回ったら画面遷移
-        if count == Global.shared.globalPlayerArray.count {
+        if count == GlobalThingsInGame.shared.playerNameArray.count {
+            
             performSegue(withIdentifier:"gamePlayerTurn",sender:nil)
+            
         }
         
-        playerSceneLabel.isHidden = true
-        sceneLabel.isHidden = true
-        desuLabel.isHidden = true
+
     }
     
     
     
     //「○さんは」＋「シーン」+「ボタンのタイトル」
     func labelChange() {
-        playerSceneLabel.text = "\(Global.shared.globalPlayerArray[count])さんは"
-        sceneLabel.text = "\(Global.shared.orderActingSceneArray[count])"
-        turnPlayerSceneCheckButton.titleLabel?.text = "\(Global.shared.globalPlayerArray[count])さんの\nシーンを確認する"
+        playerSceneLabel.text = "\(GlobalThingsInGame.shared.playerNameArray[count])さんは"
+        sceneLabel.text = "\(GlobalThingsInGame.shared.oneSetOrderActSceneArray[count])"
+        turnPlayerSceneCheckButton.titleLabel?.text = "\(GlobalThingsInGame.shared.playerNameArray[count])さんの\nシーンを確認する"
     }
 
 

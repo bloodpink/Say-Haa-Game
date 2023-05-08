@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BeforeAnswer3ViewController: UIViewController {
+class AllRoundFinishViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

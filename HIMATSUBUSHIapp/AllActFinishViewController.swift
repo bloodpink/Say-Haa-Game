@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Answer1ViewController: UIViewController {
+class AllActFinishViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,7 +16,8 @@ class Answer1ViewController: UIViewController {
     }
     
 
-    @IBAction func answerButton(_ sender: Any) {
+    @IBAction func goAnswerCheckPageButton(_ sender: Any) {
+        
         performSegue(withIdentifier: "answer", sender: nil)
     }
     

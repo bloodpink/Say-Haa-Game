@@ -14,16 +14,16 @@ class ForgetSceneViewController: UIViewController {
         
         self.navigationItem.hidesBackButton = true
         
-        ThemeLabel.text = "お題：\(Global.shared.randomTheme.theme)"
-        subThemeLabel.text = Global.shared.randomTheme.subTheme
-        aSceneLabel.text = Global.shared.randomTheme.a
-        bSceneLabel.text = Global.shared.randomTheme.b
-        cSceneLabel.text = Global.shared.randomTheme.c
-        dSceneLabel.text = Global.shared.randomTheme.d
-        eSceneLabel.text = Global.shared.randomTheme.e
-        fSceneLabel.text = Global.shared.randomTheme.f
-        gSceneLabel.text = Global.shared.randomTheme.g
-        hSceneLabel.text = Global.shared.randomTheme.h
+        ThemeLabel.text = "お題：\(GlobalThingsInGame.shared.oneSetRandomTheme.theme)"
+        subThemeLabel.text = GlobalThingsInGame.shared.oneSetRandomTheme.subTheme
+        aSceneLabel.text = GlobalThingsInGame.shared.oneSetRandomTheme.a
+        bSceneLabel.text = GlobalThingsInGame.shared.oneSetRandomTheme.b
+        cSceneLabel.text = GlobalThingsInGame.shared.oneSetRandomTheme.c
+        dSceneLabel.text = GlobalThingsInGame.shared.oneSetRandomTheme.d
+        eSceneLabel.text = GlobalThingsInGame.shared.oneSetRandomTheme.e
+        fSceneLabel.text = GlobalThingsInGame.shared.oneSetRandomTheme.f
+        gSceneLabel.text = GlobalThingsInGame.shared.oneSetRandomTheme.g
+        hSceneLabel.text = GlobalThingsInGame.shared.oneSetRandomTheme.h
         
        
 
@@ -42,7 +42,7 @@ class ForgetSceneViewController: UIViewController {
     var count = 0
     
     
-//    var dictionary = ["a":"b","b":"a"]
+
 
 
     //アラートを出して自分のボタンを選ばせる。ボタンのテキストを「確認したら戻る」に戻す
@@ -54,8 +54,8 @@ class ForgetSceneViewController: UIViewController {
         
         
         
-        let player1Button = UIAlertAction(title: "\(Global.shared.globalPlayerArray[0])", style: .default) { alertController2 in
-            let alertController2 = UIAlertController(title: "\(Global.shared.globalPlayerArray[0])さんは以下のシーンです", message: "\(Global.shared.orderActingSceneArray[0])", preferredStyle: .actionSheet)
+        let player1Button = UIAlertAction(title: "\(GlobalThingsInGame.shared.playerNameArray[0])", style: .default) { alertController2 in
+            let alertController2 = UIAlertController(title: "\(GlobalThingsInGame.shared.playerNameArray[0])さんは以下のシーンです", message: "\(GlobalThingsInGame.shared.oneSetOrderActSceneArray[0])", preferredStyle: .actionSheet)
                 
                 let backButton = UIAlertAction(title: "確認しました", style: .default, handler: nil)
                 alertController2.addAction(backButton)
@@ -64,8 +64,8 @@ class ForgetSceneViewController: UIViewController {
         
         
         
-        let player2Button = UIAlertAction(title: "\(Global.shared.globalPlayerArray[1])", style: .default) { alertController2 in
-            let alertController2 = UIAlertController(title: "\(Global.shared.globalPlayerArray[1])さんは以下のシーンです", message: "\(Global.shared.orderActingSceneArray[1])", preferredStyle: .actionSheet)
+        let player2Button = UIAlertAction(title: "\(GlobalThingsInGame.shared.playerNameArray[1])", style: .default) { alertController2 in
+            let alertController2 = UIAlertController(title: "\(GlobalThingsInGame.shared.playerNameArray[1])さんは以下のシーンです", message: "\(GlobalThingsInGame.shared.oneSetOrderActSceneArray[1])", preferredStyle: .actionSheet)
                 
                 let backButton = UIAlertAction(title: "確認しました", style: .default, handler: nil)
                 alertController2.addAction(backButton)
@@ -74,8 +74,8 @@ class ForgetSceneViewController: UIViewController {
         
         
         
-        let player3Button = UIAlertAction(title: "\(Global.shared.globalPlayerArray[2])", style: .default) { alertController2 in
-            let alertController2 = UIAlertController(title: "\(Global.shared.globalPlayerArray[2])さんは以下のシーンです", message: "\(Global.shared.orderActingSceneArray[2])", preferredStyle: .actionSheet)
+        let player3Button = UIAlertAction(title: "\(GlobalThingsInGame.shared.playerNameArray[2])", style: .default) { alertController2 in
+            let alertController2 = UIAlertController(title: "\(GlobalThingsInGame.shared.playerNameArray[2])さんは以下のシーンです", message: "\(GlobalThingsInGame.shared.oneSetOrderActSceneArray[2])", preferredStyle: .actionSheet)
                 
                 let backButton = UIAlertAction(title: "確認しました", style: .default, handler: nil)
                 alertController2.addAction(backButton)
@@ -87,10 +87,10 @@ class ForgetSceneViewController: UIViewController {
         
         
         
-        if 4 <= Global.shared.globalPlayerArray.count {
-            print("Global.shared.globalPlayerArray:\(Global.shared.globalPlayerArray)")
-            let player4Button = UIAlertAction(title: "\(Global.shared.globalPlayerArray[3])", style: .default) { alertController2 in
-                let alertController2 = UIAlertController(title: "\(Global.shared.globalPlayerArray[3])さんは以下のシーンです", message: "\(Global.shared.orderActingSceneArray[3])", preferredStyle: .actionSheet)
+        if 4 <= GlobalThingsInGame.shared.playerNameArray.count {
+            print("Global.shared.globalPlayerArray:\(GlobalThingsInGame.shared.playerNameArray)")
+            let player4Button = UIAlertAction(title: "\(GlobalThingsInGame.shared.playerNameArray[3])", style: .default) { alertController2 in
+                let alertController2 = UIAlertController(title: "\(GlobalThingsInGame.shared.playerNameArray[3])さんは以下のシーンです", message: "\(GlobalThingsInGame.shared.oneSetOrderActSceneArray[3])", preferredStyle: .actionSheet)
                     
                     let backButton = UIAlertAction(title: "確認しました", style: .default, handler: nil)
                     alertController2.addAction(backButton)
@@ -105,10 +105,10 @@ class ForgetSceneViewController: UIViewController {
             
             
             
-            if 5 <= Global.shared.globalPlayerArray.count {
+            if 5 <= GlobalThingsInGame.shared.playerNameArray.count {
                 
-                let player5Button = UIAlertAction(title: "\(Global.shared.globalPlayerArray[4])", style: .default) { alertController2 in
-                    let alertController2 = UIAlertController(title: "\(Global.shared.globalPlayerArray[4])さんは以下のシーンです", message: "\(Global.shared.orderActingSceneArray[4])", preferredStyle: .actionSheet)
+                let player5Button = UIAlertAction(title: "\(GlobalThingsInGame.shared.playerNameArray[4])", style: .default) { alertController2 in
+                    let alertController2 = UIAlertController(title: "\(GlobalThingsInGame.shared.playerNameArray[4])さんは以下のシーンです", message: "\(GlobalThingsInGame.shared.oneSetOrderActSceneArray[4])", preferredStyle: .actionSheet)
                         
                         let backButton = UIAlertAction(title: "確認しました", style: .default, handler: nil)
                         alertController2.addAction(backButton)
@@ -123,10 +123,10 @@ class ForgetSceneViewController: UIViewController {
                 
                 
                 
-                if 6 <= Global.shared.globalPlayerArray.count {
+                if 6 <= GlobalThingsInGame.shared.playerNameArray.count {
                     
-                    let player6Button = UIAlertAction(title: "\(Global.shared.globalPlayerArray[5])", style: .default) { alertController2 in
-                        let alertController2 = UIAlertController(title: "\(Global.shared.globalPlayerArray[5])さんは以下のシーンです", message: "\(Global.shared.orderActingSceneArray[5])", preferredStyle: .actionSheet)
+                    let player6Button = UIAlertAction(title: "\(GlobalThingsInGame.shared.playerNameArray[5])", style: .default) { alertController2 in
+                        let alertController2 = UIAlertController(title: "\(GlobalThingsInGame.shared.playerNameArray[5])さんは以下のシーンです", message: "\(GlobalThingsInGame.shared.oneSetOrderActSceneArray[5])", preferredStyle: .actionSheet)
                             
                             let backButton = UIAlertAction(title: "確認しました", style: .default, handler: nil)
                             alertController2.addAction(backButton)
@@ -140,10 +140,10 @@ class ForgetSceneViewController: UIViewController {
                     
                     
                     
-                    if 7 <= Global.shared.globalPlayerArray.count {
+                    if 7 <= GlobalThingsInGame.shared.playerNameArray.count {
                         
-                        let player7Button = UIAlertAction(title: "\(Global.shared.globalPlayerArray[6])", style: .default) { alertController2 in
-                            let alertController2 = UIAlertController(title: "\(Global.shared.globalPlayerArray[6])さんは以下のシーンです", message: "\(Global.shared.orderActingSceneArray[6])", preferredStyle: .actionSheet)
+                        let player7Button = UIAlertAction(title: "\(GlobalThingsInGame.shared.playerNameArray[6])", style: .default) { alertController2 in
+                            let alertController2 = UIAlertController(title: "\(GlobalThingsInGame.shared.playerNameArray[6])さんは以下のシーンです", message: "\(GlobalThingsInGame.shared.oneSetOrderActSceneArray[6])", preferredStyle: .actionSheet)
                                 
                                 let backButton = UIAlertAction(title: "確認しました", style: .default, handler: nil)
                                 alertController2.addAction(backButton)
@@ -157,10 +157,10 @@ class ForgetSceneViewController: UIViewController {
                         
                         
                         
-                        if 8 <= Global.shared.globalPlayerArray.count {
+                        if 8 <= GlobalThingsInGame.shared.playerNameArray.count {
                             
-                            let player8Button = UIAlertAction(title: "\(Global.shared.globalPlayerArray[7])", style: .default) { alertController2 in
-                                let alertController2 = UIAlertController(title: "\(Global.shared.globalPlayerArray[7])さんは以下のシーンです", message: "\(Global.shared.orderActingSceneArray[7])", preferredStyle: .actionSheet)
+                            let player8Button = UIAlertAction(title: "\(GlobalThingsInGame.shared.playerNameArray[7])", style: .default) { alertController2 in
+                                let alertController2 = UIAlertController(title: "\(GlobalThingsInGame.shared.playerNameArray[7])さんは以下のシーンです", message: "\(GlobalThingsInGame.shared.oneSetOrderActSceneArray[7])", preferredStyle: .actionSheet)
                                     
                                     let backButton = UIAlertAction(title: "確認しました", style: .default, handler: nil)
                                     alertController2.addAction(backButton)
@@ -188,13 +188,9 @@ class ForgetSceneViewController: UIViewController {
     
     
     
-    
-    func dictionaryAction () {
-        let alertController2 = UIAlertController(title: "さんは以下のシーンです", message: "\(Global.shared.randomTheme.randomSceneTakeOut())", preferredStyle: .actionSheet)
-        
-        let backButton = UIAlertAction(title: "確認しました", style: .default, handler: nil)
-        
-        alertController2.addAction(backButton)
-    }
+
 
 }
+
+
+

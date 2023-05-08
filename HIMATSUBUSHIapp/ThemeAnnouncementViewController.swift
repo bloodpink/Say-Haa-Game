@@ -6,73 +6,57 @@
 //
 
 
-//　１、お題をランダムに表示
-//　２、「○さんのシーンを確認する」の名前を、次の順番のプレイヤー名にする
+
 import UIKit
 
-class themeAnnouncementViewController: UIViewController {
+//お題を１つランダムに取得し表示
+class ThemeAnnouncementViewController: UIViewController {
     
-    
-    //お題配列のコピー
-    var copyThemeArray : [Theme]!
-    
-    var count = 1
+
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.navigationItem.hidesBackButton = true
-
-        themeArray = [theme1,theme2,theme3,theme4,theme5,theme6,theme7,theme8,theme9]
         
-
-        
-        //お題一覧を保存
-        for i in 0 ..< themeArray!.count {
-            Global.shared.globalThemeArray.append(themeArray![i])
-        }
-        
-        
-        copyThemeArray = Global.shared.globalThemeArray
-        
+        //お題を全て格納しシャッフル、そこから１つのお題セットを取得
+        GlobalThingsInGame.shared.allThemeSetArray = [theme1,theme2,theme3,theme4,theme5,theme6,theme7,theme8,theme9]
+        GlobalThingsInGame.shared.allThemeSetArray.shuffle()
+        GlobalThingsInGame.shared.oneSetRandomTheme = GlobalThingsInGame.shared.allThemeSetArray.remove(at: 0)
 
                 
+        
     }
     
 
-
+    var orderCount = -1
     
     
     override func viewWillAppear(_ animated: Bool) {
         
         themeLabel.adjustsFontSizeToFitWidth = true
-        Global.shared.roundApeendCount += 1
-        roundCountLabel.text = "\(Global.shared.roundApeendCount)回戦"
+        
+        
+        roundCountLabel.text = "\(GlobalThingsInGame.shared.appendRoundCount)回戦"
         
         orderCount += 1
-        firstPlayerSceneCheckButton.setTitle("\(Global.shared.globalPlayerArray[orderCount])さんのシーンを確認する", for: .normal)
+        playerSceneCheckButton.setTitle("\(GlobalThingsInGame.shared.playerNameArray[orderCount])さんのシーンを確認する", for: .normal)
         
-       //お題配列のコピーから１つセットをランダムに取得し、取得したものをコピーから削除
-        let random = copyThemeArray.randomElement()
-        copyThemeArray.removeAll(where: {$0 == random})
-    
-        //ランダムにとったお題を保存
-        Global.shared.randomTheme = random
-        
+ 
         //labelに反映
-        themeLabel.text = random?.theme
-        subThemeLabel.text = random?.subTheme
-        sceneALabel.text = random?.a
-        sceneBLabel.text = random?.b
-        sceneCLabel.text = random?.c
-        sceneDLabel.text = random?.d
-        sceneELabel.text = random?.e
-        sceneFLabel.text = random?.f
-        sceneGLabel.text = random?.g
-        sceneHLabel.text = random?.h
+        themeLabel.text = GlobalThingsInGame.shared.oneSetRandomTheme?.theme
+        subThemeLabel.text = GlobalThingsInGame.shared.oneSetRandomTheme?.subTheme
+        sceneALabel.text = GlobalThingsInGame.shared.oneSetRandomTheme?.a
+        sceneBLabel.text = GlobalThingsInGame.shared.oneSetRandomTheme?.b
+        sceneCLabel.text = GlobalThingsInGame.shared.oneSetRandomTheme?.c
+        sceneDLabel.text = GlobalThingsInGame.shared.oneSetRandomTheme?.d
+        sceneELabel.text = GlobalThingsInGame.shared.oneSetRandomTheme?.e
+        sceneFLabel.text = GlobalThingsInGame.shared.oneSetRandomTheme?.f
+        sceneGLabel.text = GlobalThingsInGame.shared.oneSetRandomTheme?.g
+        sceneHLabel.text = GlobalThingsInGame.shared.oneSetRandomTheme?.h
         
-        copyThemeArray.removeAll(where: {$0 == random})
+
     }
     
     
@@ -87,14 +71,12 @@ class themeAnnouncementViewController: UIViewController {
     @IBOutlet weak var sceneFLabel: UILabel!
     @IBOutlet weak var sceneGLabel: UILabel!
     @IBOutlet weak var sceneHLabel: UILabel!
-    @IBOutlet weak var firstPlayerSceneCheckButton: UIButton!
+    @IBOutlet weak var playerSceneCheckButton: UIButton!
     
     
-    var roundCount = 0
-    var orderCount = -1
-    var themeArray : [Theme]?
-    //遷移元から受け取るプレイヤー名の配列
-    var playerNameArray2 = [String]()
+
+
+  
     
 
     
@@ -122,9 +104,10 @@ class themeAnnouncementViewController: UIViewController {
     
     
     
-    @IBAction func sceanCheckButton(_ sender: UIButton) {
-        count += 1
+    @IBAction func goToSceanCheckButton(_ sender: UIButton) {
+ 
         performSegue(withIdentifier: "sceneCheck", sender: nil)
+        
     }
     
     

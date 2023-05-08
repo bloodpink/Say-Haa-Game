@@ -7,10 +7,9 @@
 
 import UIKit
 
-class homeViewController: UIViewController {
+class HomeViewController: UIViewController {
 
 
-    var count = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,9 +18,9 @@ class homeViewController: UIViewController {
     }
 
     
-    @IBAction func startButton(_ sender: Any) {
+    @IBAction func goTitlePageButton(_ sender: Any) {
         
-        performSegue(withIdentifier: "next", sender: nil)
+        performSegue(withIdentifier: "title", sender: nil)
     }
     
     

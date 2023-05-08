@@ -4,20 +4,20 @@
 //
 //  Created by 小川汰賀 on 2022/07/16.
 //
-//【前ViewControllerで指定・入力されたプレイヤー人数・プレイヤー名・ラウンド数を受け取り表示。】
+
 
 import UIKit
 
-class HaaCheackViewController : UIViewController {
+class CheackViewController : UIViewController {
 
-    //前ViewControllerで入力・決定したものを表示
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
         
         self.navigationItem.hidesBackButton = true
 
 
-        deciededRoundCountLabel.text = "\(Global.shared.roundConut)回"
+        deciededRoundCountLabel.text = "\(GlobalThingsInGame.shared.roundConut)回"
         
         deciededRoundCountLabel.adjustsFontSizeToFitWidth = true
         
@@ -25,16 +25,18 @@ class HaaCheackViewController : UIViewController {
         let playerLabelArray = [player1NameLabel,player2NameLabel,player3NameLabel,player4NameLabel,player5NameLabel,player6NameLabel,player7NameLabel,player8NameLabel]
         
         
-        for i in 0 ..< Global.shared.globalPlayerArray.count {
-            playerLabelArray[i]?.text = Global.shared.globalPlayerArray[i]
+        for i in 0 ..< GlobalThingsInGame.shared.playerNameArray.count {
+            
+            playerLabelArray[i]?.text = GlobalThingsInGame.shared.playerNameArray[i]
+            
         }
         
         
-        player4NameLabel.isHidden = Global.shared.globalPlayerArray.count < 4
-        player5NameLabel.isHidden = Global.shared.globalPlayerArray.count < 5
-        player6NameLabel.isHidden = Global.shared.globalPlayerArray.count < 6
-        player7NameLabel.isHidden = Global.shared.globalPlayerArray.count < 7
-        player8NameLabel.isHidden = Global.shared.globalPlayerArray.count < 8
+        player4NameLabel.isHidden = GlobalThingsInGame.shared.playerNameArray.count < 4
+        player5NameLabel.isHidden = GlobalThingsInGame.shared.playerNameArray.count < 5
+        player6NameLabel.isHidden = GlobalThingsInGame.shared.playerNameArray.count < 6
+        player7NameLabel.isHidden = GlobalThingsInGame.shared.playerNameArray.count < 7
+        player8NameLabel.isHidden = GlobalThingsInGame.shared.playerNameArray.count < 8
         
     }
     
@@ -50,12 +52,16 @@ class HaaCheackViewController : UIViewController {
     @IBOutlet weak var player7NameLabel: UILabel!
     @IBOutlet weak var player8NameLabel: UILabel!
     
-    //画面遷移　＋　isCheckedArrayの数もプレイヤー人数と同じ数にする
+    
+    
+    
+    
+    //画面遷移
     @IBAction func orderNextBurron(_ sender: Any) {
 
-        for _ in 0 ..< Global.shared.globalPlayerArray.count {
-            Global.shared.isCheckedNumberArray.append([Int]())
-        }
+        
+
+        
         
         performSegue(withIdentifier: "order", sender: nil)
     }
@@ -63,7 +69,11 @@ class HaaCheackViewController : UIViewController {
     
     
     @IBAction func backButton(_ sender: Any) {
+        
+        GlobalThingsInGame.shared.playerNameArray.removeAll()
+        
         _ = navigationController?.popViewController(animated: true)
+        
     }
     
 }

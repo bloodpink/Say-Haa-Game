@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HaaTitleViewController: UIViewController {
+class TitleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,13 +16,13 @@ class HaaTitleViewController: UIViewController {
     }
 
     
-    @IBAction func HaaStartButton(_ sender: Any) {
+    @IBAction func goSettingPageButton(_ sender: Any) {
         performSegue(withIdentifier: "setting", sender:  nil)
     }
     
     
 
-    @IBAction func HaaExplanationButton(_ sender: Any) {
+    @IBAction func goExeplanationPageButton(_ sender: Any) {
         performSegue(withIdentifier: "nextExplanation", sender: nil)
     }
     

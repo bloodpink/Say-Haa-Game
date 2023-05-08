@@ -11,11 +11,11 @@ class TableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        cellLabel.adjustsFontSizeToFitWidth = true
+        sceneCellTextLabel.adjustsFontSizeToFitWidth = true
     }
     
     @IBOutlet weak var cellImage: UIImageView!
-    @IBOutlet weak var cellLabel: UILabel!
+    @IBOutlet weak var sceneCellTextLabel: UILabel!
     
     
     let checkImage = UIImage(named: "checked")

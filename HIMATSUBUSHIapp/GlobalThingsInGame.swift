@@ -9,36 +9,32 @@ import Foundation
 import OrderedCollections
 import UIKit
 
-class Global {
+class GlobalThingsInGame {
 
     
-    static let shared = Global()
+    static let shared = GlobalThingsInGame()
     //空含めた全プレイヤー名情報
-    var globalPlayerArray = [String]()
+    var playerNameArray = [String]()
     //全お題集
-    var globalThemeArray = [Theme]()
+    var allThemeSetArray = [Theme]()
     //１ラウンド毎のお題
-    var randomTheme : Theme!
+    var oneSetRandomTheme : Theme!
     //ラウンド数（pickerViewに触られなければ以下の数字が使われる）
     var roundConut = 1
     //ラウンド数を記録するカウント
-    var roundApeendCount = 0
-    //プレイヤーとシーン
-    var playerSceneList : [String:String] = [:]
-    //プレイヤーとポイント
-    var playerNamePointDictionary : OrderedDictionary <String,Int> = [:]
+    var appendRoundCount = 0
     //xibファイルのセルをまとめる
-    var cellArray = [UITableViewCell]()
+    var xibCellAnswerArray = [UITableViewCell]()
     //１戦毎の各プレイヤーのシーンを、プレイヤーの演技順に格納するための配列
-    var orderActingSceneArray = [String]()
-    //回答したセルが何番目かを格納
-    var isCheckedNumberArray = [[Int]]()
+    var oneSetOrderActSceneArray = [String]()
     //各プレイヤーのポイント
     var pointArray = [Int]()
     //各プレイヤーの名前とポイント
-    var playerPointNameArray = [[PlayerNameAndPoint]]()
+    var playerPointNameAndArray2D = [[PlayerNameAndPoint]]()
     //各場所で使う
     var count = 0
+    //各プレイヤーの正解と解答のアルファベット
+    var playerAnswerAlphabetArray2D = [[String]]()
     
 
 }

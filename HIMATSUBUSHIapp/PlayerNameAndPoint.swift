@@ -7,6 +7,7 @@
 
 import Foundation
 
+//プレイヤーの名前とポイント
 struct PlayerNameAndPoint {
     
     var name: String

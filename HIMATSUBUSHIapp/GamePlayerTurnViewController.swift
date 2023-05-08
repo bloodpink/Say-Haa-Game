@@ -7,22 +7,28 @@
 
 import UIKit
 
+
 class GamePlayerTurnViewController: UIViewController {
 
     
-
+    var count = 0
+    
     override func viewWillAppear(_ animated: Bool) {
-        turnPlayerNameLabel.text = "\(Global.shared.globalPlayerArray[count])さんの番です"
-        turnPlayerFinishButton.setTitle("\(Global.shared.globalPlayerArray[count])さんの演技が終了", for: .normal)
+        turnPlayerNameLabel.text = "\(GlobalThingsInGame.shared.playerNameArray[count])さんの番です"
+        turnPlayerFinishButton.setTitle("\(GlobalThingsInGame.shared.playerNameArray[count])さんの演技が終了", for: .normal)
         
-        if count < Global.shared.globalPlayerArray.count {
+        if count < GlobalThingsInGame.shared.playerNameArray.count {
+            
             count += 1
+            
         }
+        
+        
     }
     
 
     
-    var count = 0
+
     @IBOutlet weak var turnPlayerNameLabel: UILabel! //○さんの番です
     @IBOutlet weak var turnPlayerFinishButton: UIButton! //○さんの演技終了
     
@@ -37,7 +43,8 @@ class GamePlayerTurnViewController: UIViewController {
     
     //演技が終了
     @IBAction func onePlayerTurnFinishButton(_ sender: UIButton) {
-        performSegue(withIdentifier: "answer", sender: nil)
+//        performSegue(withIdentifier: "answer", sender: nil)
+        performSegue(withIdentifier: "リファクタリング", sender: nil)
     }
     
     

@@ -7,6 +7,7 @@
 
 import Foundation
 
+//各テーマとシーン
 struct Theme : Equatable,Codable {
     
     let theme : String
@@ -20,19 +21,8 @@ struct Theme : Equatable,Codable {
     let g : String
     let h : String
     
-    
-    //シーン配列からシーンをランダムに１つ取り出し、その取り出したシーンをシーン配列から除去
-    func randomSceneTakeOut() -> String {
-        var randomSceneArray = [a,b,c,d,e,f,g,h]
-        
-        var randomScene = randomSceneArray.randomElement()
-        randomSceneArray.removeAll(where: {$0 == randomScene})
-        print(randomSceneArray)
-        //randomElementはオプショナルを返すため「！」をつけてアンラップ
-        return randomScene!
-    }
-    
-    
 
+    
+    let theme11111 = ["themea": "はぁ", "subTheme": "", "a": "A：なんで？の「はぁ」", "b": "B：力をためる「はぁ」", "c": "C：ぼうぜんの「はぁ」", "d": "D：感心の「はぁ」", "e": "E：怒りの「はぁ」", "f": "F：とぼけの「はぁ」", "g": "G：おどろきの「はぁ」", "h": "H：失恋の「はぁ」"]
     
 }
